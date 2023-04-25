@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import "./Calc.css";
+import "./ImpliedFinalScoreCalc.css";
 
-function Calc() {
+function ImpliedFinalScoreCalc() {
   const [spread, setSpread] = useState("");
   const [overUnder, setOverUnder] = useState("");
   const [output, setOutput] = useState("");
@@ -41,4 +41,4 @@ function Calc() {
   );
 }
 
-export default Calc;
+export default ImpliedFinalScoreCalc;
