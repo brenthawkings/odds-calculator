@@ -2,12 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import "./index.css";
 import ImpliedFinalScoreCalc from "./ImpliedFinalScoreCalc";
+import AmericanToImpliedProbablityCalc from "./AmericanToImpliedProbablityCalc";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ImpliedFinalScoreCalc />
+    <br></br>
+    <AmericanToImpliedProbablityCalc />
   </React.StrictMode>
 );
 
