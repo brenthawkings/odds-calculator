@@ -5,6 +5,7 @@ import "./ImpliedFinalScoreCalc.css";
 function ImpliedFinalScoreCalc() {
   const [spread, setSpread] = useState("");
   const [overUnder, setOverUnder] = useState("");
+  const [finalMessage, setFinalMessage] = useState("");
   const [output, setOutput] = useState("");
 
   const handleSubmit = (event) => {
@@ -13,30 +14,44 @@ function ImpliedFinalScoreCalc() {
     var halfOverUnder = overUnder / 2;
     var favorite = halfOverUnder + halfSpread;
     var underdog = halfOverUnder - halfSpread;
-    setOutput(`Implied Final Score: ${favorite} - ${underdog}`);
+    setFinalMessage(`Implied Final Score:`);
+    setOutput(`${favorite} - ${underdog}`);
   };
 
   return (
-    <div>
-      Implied Final Score Calculator
+    <div className="ImpliedFinalScoreCalcWrapper">
+      <div className="Title">Implied Final Score Calculator</div>
       <form onSubmit={handleSubmit}>
         <label>
-          Spread:
-          <input
-            type="number"
-            value={spread}
-            onChange={(e) => setSpread(e.target.value)}
-          />
-          Over/Under:
-          <input
-            type="number"
-            value={overUnder}
-            onChange={(e) => setOverUnder(e.target.value)}
-          />
+          <div className="Label">
+            Spread:
+            <input
+              className="Input"
+              type="number"
+              value={spread}
+              onChange={(e) => setSpread(e.target.value)}
+            />
+          </div>
         </label>
-        <button type="submit">Submit</button>
+        <label>
+          <div className="Label">
+            Over/Under:
+            <input
+              className="Input"
+              type="number"
+              value={overUnder}
+              onChange={(e) => setOverUnder(e.target.value)}
+            />
+          </div>
+        </label>
+        <div>
+          <button className="CalculateButton" type="submit">
+            Calculate
+          </button>
+        </div>
       </form>
-      <div>{output}</div>
+      <div className="Output">{finalMessage}</div>
+      <div className="Output">{output}</div>
     </div>
   );
 }
