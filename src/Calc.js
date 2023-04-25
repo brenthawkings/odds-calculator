@@ -1,57 +1,57 @@
 import React from "react";
+import { useState } from "react";
 import "./Calc.css";
 
 function Calc() {
-  return <CalcForm />;
-}
+  const [teamASpread, setTeamASpread] = useState("");
+  const [over, setOver] = useState("");
+  const [teamBSpread, setTeamBSpread] = useState("");
+  const [under, setUnder] = useState("");
+  const [output, setOutput] = useState("");
 
-class CalcForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: "" };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
-
-  handleSubmit(event) {
-    alert("Hmmm: " + this.state.value);
+  const handleSubmit = (event) => {
     event.preventDefault();
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="Calc">
-          <label>
-            Team A:
-            <div>
-              <input type="text" name="team_a_spread" />
-              <input type="text" name="over" />
-              <br></br>
-              <input type="text" name="team_a_spread_line" />
-              <input type="text" name="over_line" />
-            </div>
-          </label>
-          <label>
-            Team B:
-            <div>
-              <input type="text" name="team_b_spread" />
-              <input type="text" name="under" />
-              <br></br>
-              <input type="text" name="team_b_spread_line" />
-              <input type="text" name="under_line" />
-            </div>
-          </label>
-        </div>
-        <input type="submit" value="Submit" />
-      </form>
+    setOutput(
+      `Team A Spread: ${teamASpread}, Team B Spread: ${teamBSpread}, Over: ${over}, Under: ${under}`
     );
-  }
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Team A:
+          <input
+            type="number"
+            value={teamASpread}
+            onChange={(e) => setTeamASpread(e.target.value)}
+          />
+          <input
+            type="number"
+            value={over}
+            onChange={(e) => setOver(e.target.value)}
+          />
+        </label>
+        <br />
+        <label>
+          Team B:
+          <input
+            type="number"
+            value={teamBSpread}
+            onChange={(e) => setTeamBSpread(e.target.value)}
+          />
+          <input
+            type="number"
+            value={under}
+            onChange={(e) => setUnder(e.target.value)}
+          />
+        </label>
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+      <div>{output}</div>
+    </div>
+  );
 }
 
 export default Calc;
