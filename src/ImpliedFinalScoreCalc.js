@@ -1,11 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import "./ImpliedFinalScoreCalc.css";
+import "./Calc.css";
 
 function ImpliedFinalScoreCalc() {
   const [spread, setSpread] = useState("");
   const [overUnder, setOverUnder] = useState("");
-  const [finalMessage, setFinalMessage] = useState("");
   const [output, setOutput] = useState("");
 
   const handleSubmit = (event) => {
@@ -14,44 +13,58 @@ function ImpliedFinalScoreCalc() {
     var halfOverUnder = overUnder / 2;
     var favorite = halfOverUnder + halfSpread;
     var underdog = halfOverUnder - halfSpread;
-    setFinalMessage(`Implied Final Score:`);
     setOutput(`${favorite} - ${underdog}`);
   };
 
   return (
-    <div className="ImpliedFinalScoreCalcWrapper">
-      <div className="Title">Implied Final Score Calculator</div>
+    <div className="Wrapper">
+      <div className="Title">Implied Final Score</div>
       <form onSubmit={handleSubmit}>
-        <label>
-          <div className="Label">
-            Spread:
-            <input
-              className="Input"
-              type="number"
-              value={spread}
-              onChange={(e) => setSpread(e.target.value)}
-            />
-          </div>
-        </label>
-        <label>
-          <div className="Label">
-            Over/Under:
-            <input
-              className="Input"
-              type="number"
-              value={overUnder}
-              onChange={(e) => setOverUnder(e.target.value)}
-            />
-          </div>
-        </label>
-        <div>
-          <button className="CalculateButton" type="submit">
-            Calculate
-          </button>
-        </div>
+        <table>
+          <tbody>
+            <tr>
+              <td>Spread:</td>
+              <td>
+                <label>
+                  <div className="Label">
+                    <input
+                      class="Input Input-Narrow"
+                      type="number"
+                      value={spread}
+                      onChange={(e) => setSpread(e.target.value)}
+                    />
+                  </div>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td>Over/Under:</td>
+              <td>
+                <label>
+                  <div className="Label">
+                    <input
+                      class="Input Input-Narrow"
+                      type="number"
+                      value={overUnder}
+                      onChange={(e) => setOverUnder(e.target.value)}
+                    />
+                  </div>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button className="CalculateButton" type="submit">
+                  =
+                </button>
+              </td>
+              <td>
+                <text className="Output">{output}</text>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </form>
-      <div className="Output">{finalMessage}</div>
-      <div className="Output">{output}</div>
     </div>
   );
 }

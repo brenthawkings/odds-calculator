@@ -1,10 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import "./AmericanToImpliedProbablityCalc.css";
+import "./Calc.css";
 
 function AmericanToImpliedProbablityCalc() {
   const [american, setAmerican] = useState("");
-  const [finalMessage, setFinalMessage] = useState("");
   const [output, setOutput] = useState("");
 
   const handleSubmit = (event) => {
@@ -18,33 +17,45 @@ function AmericanToImpliedProbablityCalc() {
     }
     impliedProbability = impliedProbability * 100;
     impliedProbability = impliedProbability.toFixed(2);
-    setFinalMessage(`Implied Probability:`);
     setOutput(`${impliedProbability}%`);
   };
 
   return (
-    <div className="AmericanToImpliedProbablityCalcWrapper">
-      <div className="Title">American To Implied Probablity Calculator</div>
+    <div className="Wrapper">
+      <div className="Title">
+        American <>&#129062;</> Implied Probablity
+      </div>
       <form onSubmit={handleSubmit}>
-        <label>
-          <div className="Label">
-            American Odds:
-            <input
-              className="Input"
-              type="number"
-              value={american}
-              onChange={(e) => setAmerican(e.target.value)}
-            />
-          </div>
-        </label>
-        <div>
-          <button className="CalculateButton" type="submit">
-            Calculate
-          </button>
-        </div>
+        <table>
+          <tbody>
+            <tr>
+              <td>American Odds:</td>
+              <td>
+                <label>
+                  <div className="Label">
+                    <input
+                      class="Input Input-Wide"
+                      type="number"
+                      value={american}
+                      onChange={(e) => setAmerican(e.target.value)}
+                    />
+                  </div>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button className="CalculateButton" type="submit">
+                  =
+                </button>
+              </td>
+              <td>
+                <text className="Output">{output}</text>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </form>
-      <div className="Output">{finalMessage}</div>
-      <div className="Output">{output}</div>
     </div>
   );
 }
